@@ -1,0 +1,47 @@
+    type Query{
+        users(query:String,first:Int,skip:Int):[User!]!,
+        me:User!
+    }
+
+    type Mutation{
+        createUser(data:createUserInput!):AuthPayload!,
+        loginUser(data:loginUserInput!):AuthPayload!,
+        deleteUser:User!,
+        updateUser(data:updateUserInput!):User!
+    }
+
+    type Subscription{
+        count:Int!
+    }
+  
+    input loginUserInput{
+        password:String!,
+        email:String!
+    }
+
+    input createUserInput{
+        name:String!,
+        password:String!,
+        email:String!
+    }
+
+    input updateUserInput{
+        name:String,
+        email:String,
+        password:String
+
+    }
+    
+    type AuthPayload{
+        token:String!,
+        user:User!
+    }
+
+    type User{
+        id: ID!,
+        name:String!,
+        password:String!,
+        email:String,
+        updatedAt:String!,
+        createdAt:String! 
+    }
